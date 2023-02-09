@@ -1,0 +1,9 @@
+.error {
+    border: 1px solid var(--error-border-color);
+    background: var(--secondary-error-bgcolor);
+}
+
+.success {
+    border: 1px solid var(--success-border-color);
+    background: var(--secondary-success-bgcolor);
+}

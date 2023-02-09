@@ -1,0 +1,47 @@
+.message {
+    position: absolute;
+    z-index: 1000;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    max-width: 600px;
+    height: fit-content;
+    padding: 16px;
+    border-radius: var(--primary-border-radius);
+    animation: msg 0.2s linear;
+
+    & > span {
+        display: inline-block;
+        width: calc(100% - 76px);
+        color: var(--primary-text-color);
+    }
+
+    & svg {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 14px;
+    }
+
+    @keyframes msg {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+.message_close_icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-left: 14px;
+    margin-right: 0;
+    cursor: pointer;
+
+    & path {
+        fill: var(--icon-color);
+    }
+}

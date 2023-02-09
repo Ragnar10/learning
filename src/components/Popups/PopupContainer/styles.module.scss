@@ -1,0 +1,10 @@
+@import '../../../theme/scss/mixins';
+
+.container {
+    @include popupContainer;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.popup {
+    @include popupWrapper;
+}

@@ -1,0 +1,77 @@
+:root {
+    // Colors
+    --success-btn-bgcolor: #75AF26;
+    --error-btn-bgcolor: #F53D46;
+    --primary-success-bgcolor: #F1FFE2;
+    --primary-warning-bgcolor: #FEF4AD;
+    --primary-error-bgcolor: #FCE8E8;
+    --primary-info-bgcolor: #E6F7FF;
+    --locked-shadow-bgcolor: rgba(119, 119, 119, 0.3);
+    --tab-bgcolor: rgb(150, 150, 150);
+
+    --navlink-text-color: rgba(255, 255, 255, 0.72);
+    --link-text-color: #0595E7;
+    --error-text-color: #EE2934;
+    --warning-text-color: #DB8300;
+    --success-text-color: #5A9310;
+
+    --error-border-color: rgba(245, 61, 70, 0.3);
+    --success-border-color: rgba(117, 175, 38, 0.3);
+
+    --delete-icon-color: rgb(255, 120, 120);
+    --details-icon-color: rgb(100, 175, 255);
+    --edit-icon-color: rgb(243, 168, 114);
+
+    // Font-size
+    --title-fsize: 20px;
+    --nav-fsize: 18px;
+    --primary-fszie: 16px;
+    --midddle-fsize: 14px;
+    --small-fsize: 12px;
+
+    // Dimensions
+    --header-height: 60px;
+    --sidebar-width: 74px;
+    --primary-border-radius: 8px;
+    --secondary-border-radius: 4px;
+}
+
+:root[data-theme='false'] {
+    // Background color
+    --primary-color: #FFFFFF;
+    --sidebar-bgcolor: rgba(66, 75, 94, 0.07);
+    --primary-btn-bgcolor: rgba(81, 122, 138, 0.08);
+    --disable-btn-bgcolor: rgba(30, 37, 39, 0.04);
+    --secondary-error-bgcolor: #FCE8E8;
+    --secondary-success-bgcolor: rgba(163, 232, 69, 0.3);
+    // Text/other color
+    --primary-text-color: rgba(0, 0, 0, 0.96);
+    --secondary-text-color: rgba(0, 0, 0, 0.72);
+    --placeholder-text-color: rgba(0, 0, 0, 0.54);
+    --primary-border-color: rgba(0, 0, 0, 0.15);
+    --secondary-border-color: rgba(30, 37, 39, 0.4);
+    --primary-shadow-color: rgba(40, 40, 40, 0.4);
+    --icon-color: rgba(30, 37, 39, 0.58);
+    --icon-active-color: rgba(30, 37, 39, 0.9);
+}
+
+:root[data-theme='true'] {
+    // Background color
+    --primary-color: #343739;
+    --sidebar-bgcolor: rgba(169, 193, 245, 0.07);
+    --primary-btn-bgcolor: #424242;
+    --disable-btn-bgcolor: #626262;
+    --secondary-error-bgcolor: #AF585C;
+    --secondary-success-bgcolor: var(--success-btn-bgcolor);
+    // Text/other color
+    --primary-text-color: rgba(255, 255, 255, 0.96);
+    --secondary-text-color: rgba(255, 255, 255, 0.72);
+    --placeholder-text-color: rgba(255, 255, 255, 0.54);
+    --primary-border-color: rgba(255, 255, 255, 0.15);
+    --secondary-border-color: rgba(224, 232, 235, 0.4);
+    --primary-shadow-color: rgba(200, 200, 200, 0.4);
+    --icon-color: rgba(224, 232, 235, 0.64);
+    --icon-active-color: rgba(224, 232, 235, 0.9);
+}
+
+
