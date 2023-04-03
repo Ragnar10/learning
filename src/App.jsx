@@ -11,7 +11,7 @@ const App = () => {
     return (
         <Routes>
             <Route element = { <Main /> } >
-
+                <Route index element = { <div>Hello world!</div> } />
             </Route>
 
             <Route path = '*' element = { <Navigate to = '/' replace /> } />

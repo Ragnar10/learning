@@ -5,6 +5,11 @@
 	"rules": {
 		"max-len": [2, {"code": 120, "tabWidth": 4, "ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true}],
 		"no-param-reassign": 0,
-		"no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }]
+		"no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+		"node/no-missing-import": ["error", {
+			"allowModules": [],
+			"resolvePaths": ["/src"],
+			"tryExtensions": [".js", ".jsx", ".json", ".node"]
+		}]
 	}
 }

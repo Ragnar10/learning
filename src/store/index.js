@@ -6,7 +6,7 @@ import interactiveSlice from '../reducers/interactiveSlice';
 
 export default configureStore({
     reducer: {
-        general: generalReducer,
+        general:     generalReducer,
         interactive: interactiveSlice,
     },
 });

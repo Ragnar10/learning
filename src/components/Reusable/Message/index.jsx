@@ -5,10 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearError, clearMessage } from '../../../reducers/generalSlice';
 // Styles
 import Styles from './styles.module.scss';
-// Images
-import { ReactComponent as SuccessIcon } from '../../../theme/assets/icons/check.svg';
-import { ReactComponent as ErrorIcon } from '../../../theme/assets/icons/error.svg';
-import { ReactComponent as CloseIcon } from '../../../theme/assets/icons/close.svg';
 
 export const Message = (props) => {
     const dispatch = useDispatch();
@@ -33,13 +29,12 @@ export const Message = (props) => {
 
     return (
         <div id = { 'message' } className = { `${Styles.message} ${props.class}` }>
-            { props.type === 'success' && <SuccessIcon alt = 'success icon' /> }
-            { props.type === 'error' && <ErrorIcon alt = 'error icon' /> }
+            { props.type === 'success' && <span>success</span> }
+            { props.type === 'error' && <span>error</span> }
             <span>{ props.children }</span>
-            <CloseIcon
+            <span
                 className = { Styles.message_close_icon }
-                onClick = { onClose }
-                alt = 'close icon' />
+                onClick = { onClose }>x</span>
         </div>
     );
 };

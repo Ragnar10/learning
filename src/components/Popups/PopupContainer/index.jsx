@@ -6,6 +6,8 @@ import { setPopup } from '../../../reducers/interactiveSlice';
 import { popupNames } from '../../../constants';
 // Styles
 import Styles from './styles.module.scss';
+// Images
+import { ReactComponent as CloseIcon } from '../../../theme/assets/icons/close.svg';
 // Components
 
 export const PopupContainer = () => {
@@ -14,10 +16,19 @@ export const PopupContainer = () => {
 
     if (!popup.name) return null;
 
+    const onClose = () => {
+        dispatch(setPopup({}));
+    };
+
     return (
         <section className = { Styles.container }>
             <div className = { Styles.popup }>
-
+                <div className = { Styles.header }>
+                    <h3>{ 'Title' }</h3>
+                    <CloseIcon
+                        onClick = { onClose }
+                        alt = { 'close icon' } />
+                </div>
             </div>
         </section>
     );

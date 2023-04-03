@@ -8,3 +8,21 @@
 .popup {
     @include popupWrapper;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    & > svg {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+
+        * {
+            fill: var(--icon-color);
+        }
+    }
+}
