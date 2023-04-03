@@ -5,13 +5,13 @@ import {
 // Components
 import { Main } from './components';
 // Pages
-import {} from './pages';
+import { BannerPage } from './pages';
 
 const App = () => {
     return (
         <Routes>
             <Route element = { <Main /> } >
-                <Route index element = { <div>Hello world!</div> } />
+                <Route index element = { <BannerPage /> } />
             </Route>
 
             <Route path = '*' element = { <Navigate to = '/' replace /> } />
