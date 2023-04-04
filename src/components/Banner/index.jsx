@@ -1,5 +1,4 @@
 // Core
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // Routing
 import { useNavigate } from 'react-router-dom';
