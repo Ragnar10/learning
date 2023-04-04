@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const interactiveSlice = createSlice({
     name:         'interactive',
     initialState: {
-        popup:       {},
+        popup: {},
     },
     reducers: {
         setPopup: (state, action) => {
