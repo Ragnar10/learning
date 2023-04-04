@@ -5,7 +5,7 @@ import {
     createBrowserRouter, RouterProvider, Navigate,
 } from 'react-router-dom';
 // Components
-import { Banner, Main } from './components';
+import { Main } from './components';
 // Pages
 const BannerPage = lazy(() => import('./pages/BannerPage'));
 const Top10FilmsPage = lazy(() => import('./pages/Top10FilmsPage'));
