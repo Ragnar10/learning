@@ -6,7 +6,7 @@ export const Top10Serials = () => {
         <div className = { Styles.container }>
             <figure className = { Styles.poster }>
                 <img src = { 'https://www.ixbt.com/img/n1/news/2022/11/0/654546_large.png' } alt = { 'poster' } />
-                <figcaption>{ '«ПОдни из нас» / The Last of Us' }</figcaption>
+                <figcaption>{ '«Одни из нас» / The Last of Us' }</figcaption>
             </figure>
             <figure className = { Styles.poster }>
                 <img src = { 'https://images.unian.net/photos/2022_07/thumb_files/1200_0_1657026499-7649.jpg' } alt = { 'poster' } />
