@@ -1,5 +1,8 @@
+// Components
 import { Banner } from '../components';
 
-export const BannerPage = () => {
+const BannerPage = () => {
     return <Banner />;
 };
+
+export default BannerPage;

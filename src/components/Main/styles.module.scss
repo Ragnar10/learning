@@ -11,5 +11,6 @@
     flex-direction: column;
     width: 100%;
     height: calc(100vh - var(--header-height));
+    background-color: rgba(1, 1, 86, 0.7);
     overflow-y: auto;
 }

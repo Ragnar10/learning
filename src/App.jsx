@@ -1,22 +1,39 @@
+// Core
+import { lazy } from 'react';
 // Routing
 import {
-    Routes, Navigate, Route, Outlet,
+    createBrowserRouter, RouterProvider, Navigate,
 } from 'react-router-dom';
 // Components
-import { Main } from './components';
+import { Banner, Main } from './components';
 // Pages
-import { BannerPage } from './pages';
+const BannerPage = lazy(() => import('./pages/BannerPage'));
+const Top10FilmsPage = lazy(() => import('./pages/Top10FilmsPage'));
+const Top10SerialsPage = lazy(() => import('./pages/Top10SerialsPage'));
+
+const router = createBrowserRouter([
+    {
+        element:  <Main />,
+        children: [
+            {
+                path:    '/',
+                element: <BannerPage />,
+            },
+            {
+                path:    '/top10films',
+                element: <Top10FilmsPage />,
+            },
+            {
+                path:    '/top10serials',
+                element: <Top10SerialsPage />,
+            },
+        ],
+    },
+    { path: '*', element: <Navigate to = '/' replace /> },
+]);
 
 const App = () => {
-    return (
-        <Routes>
-            <Route element = { <Main /> } >
-                <Route index element = { <BannerPage /> } />
-            </Route>
-
-            <Route path = '*' element = { <Navigate to = '/' replace /> } />
-        </Routes>
-    );
+    return <RouterProvider router = { router } />;
 };
 
 export default App;
