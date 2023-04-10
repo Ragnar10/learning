@@ -11,18 +11,32 @@
 }
 
 .header_logo {
+    position: relative;
+    top: 20px;
     display: flex;
     flex-direction: column;
     width: fit-content;
     height: fit-content;
     font-family: Poppins_Bold, sans-serif;
-    font-size: 24px;
+    font-size: 100px;
     font-weight: 900;
-    color: #ffcc00;
-    text-shadow: 1px 1px 1px #004cdc, -1px -1px 1px #004cdc, -1px 1px 1px #004cdc, 1px -1px 1px #004cdc;
+    letter-spacing: -1px;
+    background: linear-gradient(-180deg, #f6c911 40%, rgba(246, 201, 17, 0.2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    transform: rotate(-5deg);
+    user-select: none;
 }
 
-.header_nav {
+.header_menu {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+.menu_nav {
     display: flex;
     align-items: center;
     width: fit-content;

@@ -9,22 +9,23 @@ export const Header = () => {
     return (
         <header id = { 'header' } className = { Styles.container }>
             <Link to = { '/' } className = { Styles.header_logo }>
-                <span>{ 'Топовая' }</span>
-                <span>{ 'Киношечка' }</span>
+                <span>{ 'Best3' }</span>
             </Link>
-            <nav className = { Styles.header_nav }>
-                <NavLink
-                    to = { '/top10films' }
-                    className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
-                    { 'Топ 10 фильмов' }
-                </NavLink>
-                <NavLink
-                    to = { '/top10serials' }
-                    className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
-                    { 'Топ 10 сериалов' }
-                </NavLink>
-            </nav>
-            <ThemeBtn />
+            <div className = { Styles.header_menu }>
+                <ThemeBtn />
+                <nav className = { Styles.menu_nav }>
+                    <NavLink
+                        to = { '/signin' }
+                        className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
+                        { 'Sign in' }
+                    </NavLink>
+                    <NavLink
+                        to = { '/signup' }
+                        className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
+                        { 'Sign up' }
+                    </NavLink>
+                </nav>
+            </div>
         </header>
     );
 };

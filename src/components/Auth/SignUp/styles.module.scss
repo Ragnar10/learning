@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: fit-content;
+    margin: 80px auto;
+}
+
+.submit_btn {
+    width: 100%;
+}
+
+.loader {
+    margin: 0 auto;
+}

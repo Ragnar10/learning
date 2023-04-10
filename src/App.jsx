@@ -7,9 +7,9 @@ import {
 // Components
 import { Main } from './components';
 // Pages
-const BannerPage = lazy(() => import('./pages/BannerPage'));
-const Top10FilmsPage = lazy(() => import('./pages/Top10FilmsPage'));
-const Top10SerialsPage = lazy(() => import('./pages/Top10SerialsPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SignUpPage = lazy(() => import('./pages/AuthPages/SignUpPage'));
+const SignInPage = lazy(() => import('./pages/AuthPages/SignInPage'));
 
 const router = createBrowserRouter([
     {
@@ -17,15 +17,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path:    '/',
-                element: <BannerPage />,
+                element: <HomePage />,
             },
             {
-                path:    '/top10films',
-                element: <Top10FilmsPage />,
+                path:    '/signup',
+                element: <SignUpPage />,
             },
             {
-                path:    '/top10serials',
-                element: <Top10SerialsPage />,
+                path:    '/signin',
+                element: <SignInPage />,
             },
         ],
     },
