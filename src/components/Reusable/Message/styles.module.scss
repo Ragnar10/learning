@@ -10,17 +10,24 @@
     border-radius: var(--primary-border-radius);
     animation: msg 0.2s linear;
 
-    & > span {
+    & b {
         display: inline-block;
-        width: calc(100% - 76px);
-        color: var(--primary-text-color);
+        width: fit-content;
     }
 
-    & svg {
+    & .success {
+        color: var(--success-text-color);
+    }
+
+    & .error {
+        color: var(--error-text-color);
+    }
+
+    & span {
         display: inline-block;
-        width: 24px;
-        height: 24px;
-        margin-right: 14px;
+        width: calc(100% - 76px);
+        margin: 0 14px;
+        color: var(--primary-text-color);
     }
 
     @keyframes msg {
@@ -37,8 +44,6 @@
     display: inline-block;
     width: 24px;
     height: 24px;
-    margin-left: 14px;
-    margin-right: 0;
     cursor: pointer;
 
     & path {
