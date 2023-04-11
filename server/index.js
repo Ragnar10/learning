@@ -1,38 +1,26 @@
 // Core
 import express from 'express';
 import cors from 'cors';
-import fs from 'fs';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import * as dotenv from 'dotenv';
+// Middleware
+import { checkAuth } from './middleware/index.js';
+// Validation
+import { signupValidation, signinValidation } from './validations/index.js';
+// Controllers
+import { AuthController } from './controllers/index.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.post('/signup', (req, res) => {
-    fs.readFile(`${__dirname}/db/users.json`, 'utf8', (error, data) => {
-        if (error) return res.status(500).json({ error: true });
+app.post('/signup', signupValidation, AuthController.signup);
 
-        const users = data ? JSON.parse(data) : [];
+app.post('/signin', signinValidation, AuthController.signin);
 
-        const isFindUser = users.find((i) => i.email === req.body.email);
-
-        if (isFindUser) return res.status(401).json({ error: true });
-
-        const updatedUsers = [...users, { id: Date.now(), ...req.body }];
-
-        fs.writeFile(`${__dirname}/db/users.json`, JSON.stringify(updatedUsers), 'utf8', (err) => {
-            if (err) return res.status(500).json({ error: true });
-
-            res.status(200).json({ success: true });
-        });
-    });
-});
-
-app.listen('4000', (error) => {
+app.listen(process.env.PORT, (error) => {
     if (error) console.log(error);
 
-    console.log('Server is running on port 4000...');
+    console.log(`Server is running on port ${process.env.PORT}...`);
 });
