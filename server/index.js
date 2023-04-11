@@ -82,7 +82,7 @@ app.post('/signin', signinValidation, (req, res) => {
                     token,
                 });
             } else {
-                res.status(400).json({ message: 'Не правільний логін чи пароль' });
+                res.status(400).json({ message: 'Не правильний логін чи пароль' });
             }
         });
     } catch (error) {
