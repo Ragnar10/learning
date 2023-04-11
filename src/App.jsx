@@ -10,6 +10,7 @@ import { Main } from './components';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/AuthPages/SignUpPage'));
 const SignInPage = lazy(() => import('./pages/AuthPages/SignInPage'));
+const FilmsPage = lazy(() => import('./pages/FilmsPage'));
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path:    '/signin',
                 element: <SignInPage />,
+            },
+            {
+                path:    '/films',
+                element: <FilmsPage />,
             },
         ],
     },

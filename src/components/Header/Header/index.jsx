@@ -1,3 +1,5 @@
+// Core
+import { useSelector } from 'react-redux';
 // Routing
 import { Link, NavLink } from 'react-router-dom';
 // Styles
@@ -6,6 +8,8 @@ import Styles from './styles.module.scss';
 import { ThemeBtn } from '../ThemeBtn';
 
 export const Header = () => {
+    const isAuth = Boolean(useSelector((state) => state.auth.user).id);
+
     return (
         <header id = { 'header' } className = { Styles.container }>
             <Link to = { '/' } className = { Styles.header_logo }>
@@ -14,16 +18,21 @@ export const Header = () => {
             <div className = { Styles.header_menu }>
                 <ThemeBtn />
                 <nav className = { Styles.menu_nav }>
-                    <NavLink
-                        to = { '/signin' }
-                        className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
-                        { 'Sign in' }
-                    </NavLink>
-                    <NavLink
-                        to = { '/signup' }
-                        className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
-                        { 'Sign up' }
-                    </NavLink>
+                    {
+                        !localStorage.getItem('token') && !isAuth
+                        && <>
+                            <NavLink
+                                to = { '/signin' }
+                                className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
+                                { 'Sign in' }
+                            </NavLink>
+                            <NavLink
+                                to = { '/signup' }
+                                className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
+                                { 'Sign up' }
+                            </NavLink>
+                        </>
+                    }
                 </nav>
             </div>
         </header>

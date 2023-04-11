@@ -34,8 +34,7 @@ export const SignIn = () => {
     });
 
     const onFormSubmit = (values) => {
-        console.log(values);
-        // dispatch(authActions.signIn(values, navigate));
+        dispatch(authActions.signIn(values, navigate));
     };
 
     return (
