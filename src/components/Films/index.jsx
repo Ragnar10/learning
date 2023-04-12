@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Routing
 import { Navigate } from 'react-router-dom';
+// Mui
+import Skeleton from '@mui/material/Skeleton';
 // Actions
 import { filmsActions } from '../../actions';
 // Styles
 import Styles from './styles.module.scss';
-// Components
-import { Loader } from '../Reusable';
 
 export const Films = () => {
     const dispatch = useDispatch();
@@ -23,25 +23,32 @@ export const Films = () => {
 
     if (!localStorage.getItem('token') && !isAuth) return <Navigate to = { '/signin' } />;
 
-    if (loading) {
-        return (
-            <div className = { Styles.container }>
-                <Loader class = { Styles.loader } />
-            </div>
-        );
-    }
-
     return (
         <div className = { Styles.container }>
-            <ul>
+            <ul className = { Styles.films }>
                 {
-                    films.length > 0 && films.map((i, index) => {
-                        return (
-                            <li key = { index }>
-                                <span><b>{ i.title }</b>{ ` (${i.year})` }</span>
-                            </li>
-                        );
-                    })
+                    loading
+                        ? Array.from(new Array(5)).map((_, index) => {
+                            return (
+                                <li key = { index }>
+                                    <Skeleton
+                                        variant = { 'rectangular' }
+                                        width = { 300 }
+                                        height = { 450 }
+                                        style = { { marginBottom: '30px' } } />
+                                    <Skeleton variant = { 'text' } height = { 16 } />
+                                    <Skeleton variant = { 'text' } height = { 16 } />
+                                </li>
+                            );
+                        })
+                        : films.map((i, index) => {
+                            return (
+                                <li key = { index } className = { Styles.film }>
+                                    <img src = { i.poster } alt = { `Poster ${i.title}` } />
+                                    <span><b>{ i.title }</b>{ ` (${i.year})` }</span>
+                                </li>
+                            );
+                        })
                 }
             </ul>
         </div>

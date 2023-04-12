@@ -30,13 +30,21 @@
     user-select: none;
 }
 
-.header_menu {
+.header_nav,
+.header_auth {
     display: flex;
     width: fit-content;
     height: fit-content;
 }
 
-.menu_nav {
+.auth_date {
+    margin-right: 20px;
+    font-size: var(--title-fsize);
+    color: var(--success-btn-bgcolor);
+    text-shadow: 0.1px 0.1px var(--primary-text-color);
+}
+
+.auth_nav {
     display: flex;
     align-items: center;
     width: fit-content;
@@ -47,6 +55,7 @@
 .nav_link, .nav_active_link {
     font-size: var(--nav-fsize);
     color: var(--icon-color);
+    cursor: pointer;
 }
 
 .nav_link {

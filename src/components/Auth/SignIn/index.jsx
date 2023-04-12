@@ -28,8 +28,8 @@ export const SignIn = () => {
         mode:          'onBlur',
         resolver:      validSchema('signin'),
         defaultValues: {
-            email:    '',
-            password: '',
+            email:    'test@test.com',
+            password: 'Test123',
         },
     });
 

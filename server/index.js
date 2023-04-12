@@ -104,6 +104,22 @@ app.get('/films', checkAuth, (req, res) => {
     }
 });
 
+app.get('/realtime', (req, res) => {
+    res.writeHead(200, {
+        Connection:      'keep-alive',
+        'Content-Type':  'text/event-stream',
+        'Cache-Control': 'no-cache',
+    });
+    setInterval(() => {
+        res.write(`id: ${Date.now()}\nretry: 5000\ndata: ${Date.now()}\n\n`);
+    }, 10000);
+
+    req.on('close', () => {
+        res.end();
+        console.log('Client closed the connection.');
+    });
+});
+
 app.listen(process.env.PORT, (error) => {
     if (error) console.log(error);
 

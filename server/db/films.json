@@ -1,10 +1,12 @@
 [
 	{
 		"title": "John Wick",
-		"year": "2023"
+		"year": "2023",
+		"poster": "https://image.tmdb.org/t/p/original/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"
 	},
 	{
 		"title": "Dungeons & dragons honor among thieves",
-		"year": "2023"
+		"year": "2023",
+		"poster": "https://m.media-amazon.com/images/M/MV5BZjAyMGMwYTEtNDk4ZS00YmY0LThhZjUtOWI4ZjFmZmU4N2I3XkEyXkFqcGdeQXVyMTEyNzQ1MTk0._V1_.jpg"
 	}
 ]
