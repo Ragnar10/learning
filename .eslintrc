@@ -13,7 +13,7 @@
 			"tryExtensions": [".js", ".jsx", ".json", ".node"]
 		}],
 		"node/no-unpublished-import": ["error", {
-			"allowModules": ["vite", "@vitejs/plugin-react", "vite-plugin-svgr"]
+			"allowModules": ["vite", "@vitejs/plugin-react", "vite-plugin-svgr", "@testing-library/jest-dom", "@testing-library/react", "vitest"]
 		}]
 	}
 }
