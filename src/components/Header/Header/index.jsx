@@ -6,6 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 // Styles
 import Styles from './styles.module.scss';
 // Components
+import { Calendar } from '../Calendar';
 import { ThemeBtn } from '../ThemeBtn';
 
 export const Header = () => {
@@ -46,6 +47,7 @@ export const Header = () => {
                 }
             </nav>
             <div className = { Styles.header_auth }>
+                <Calendar />
                 <div className = { Styles.auth_date }>{ date }</div>
                 <ThemeBtn />
                 <div className = { Styles.auth_nav }>
