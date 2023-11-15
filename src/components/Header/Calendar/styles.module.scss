@@ -47,11 +47,11 @@
     display: flex;
     flex-direction: column;
     width: 320px;
-    height: 300px;
+    max-height: 340px;
     padding: 16px;
     border-radius: var(--primary-border-radius);
     box-shadow: var(--primary-box-shadow);
-    background: #FFFFFF;
+    background: var(--primary-color);
 }
 
 .calendar[data-open='false'] {
@@ -105,7 +105,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    max-height: 200px;
+    max-height: 240px;
 
     & span {
         display: inline-block;
@@ -114,18 +114,20 @@
         line-height: 40px;
         text-align: center;
         color: var(--placeholder-text-color);
-
-        &:hover {
-            border-radius: 50%;
-            color: var(--secondary-text-color);
-            background: var(--disable-btn-bgcolor);
-            cursor: pointer;
-        }
     }
 
     & span[data-chosen='true'] {
         border-radius: 50%;
         background: var(--success-btn-bgcolor);
         color: #FFFFFF;
+    }
+
+    & span[data-empty='false'] {
+        &:hover {
+            border-radius: 50%;
+            color: var(--secondary-text-color);
+            background: var(--disable-btn-bgcolor);
+            cursor: pointer;
+        }
     }
 }

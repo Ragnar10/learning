@@ -1,27 +1,77 @@
 // Core
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // Instruments
 import moment from 'moment';
 // Styles
 import Styles from './styles.module.scss';
 
-const week = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'нд'];
-const calendar = [
-    { id: 1, date: 1 }, { id: 2, date: 2 }, { id: 3, date: 3 }, { id: 4, date: 4 }, { id: 5, date: 5 },
-    { id: 6, date: 6 }, { id: 7, date: 7 }, { id: 8, date: 8 }, { id: 9, date: 9 }, { id: 10, date: 10 },
-    { id: 11, date: 11 }, { id: 12, date: 12 }, { id: 13, date: 13 }, { id: 14, date: 14 }, { id: 15, date: 15 },
-    { id: 16, date: 16 }, { id: 17, date: 17 }, { id: 18, date: 18 }, { id: 19, date: 19 }, { id: 20, date: 20 },
-    { id: 21, date: 21 }, { id: 22, date: 22 }, { id: 23, date: 23 }, { id: 24, date: 24 }, { id: 25, date: 25 },
-    { id: 26, date: 26 }, { id: 27, date: 27 }, { id: 28, date: 28 }, { id: 29, date: 29 }, { id: 30, date: 30 },
-    { id: 31, date: 31 },
-];
+const weekDays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'нд'];
+const months = {
+    1:  'Січень',
+    2:  'Лютий',
+    3:  'Березень',
+    4:  'Квітень',
+    5:  'Травень',
+    6:  'Червень',
+    7:  'Липень',
+    8:  'Серпень',
+    9:  'Вересень',
+    10: 'Жовтень',
+    11: 'Листопад',
+    12: 'Грудень',
+};
+
+const createCalendar = (day) => {
+    const startMonthDay = moment(day).startOf('month');
+    const firstWeekDay = (startMonthDay.day() === 0 ? 7 : startMonthDay.day()) - 1;
+    const lastMonthDay = moment(day).daysInMonth();
+    const tempCalendar = [];
+
+    for (let i = 0; i < 42; i++) {
+        if (i < firstWeekDay || i + 1 > lastMonthDay + firstWeekDay) {
+            tempCalendar[ i ] = null;
+        } else {
+            tempCalendar[ i ] = {
+                day:     i + 1 - firstWeekDay,
+                weekDay: startMonthDay.date(i + 1 - firstWeekDay).day() === 0
+                    ? 7 : startMonthDay.date(i + 1 - firstWeekDay).day(),
+                month:    moment(day).month() + 1,
+                year:     moment(day).year(),
+                fullDate: moment(day).date(i + 1 - firstWeekDay).format('DD.MM.YYYY'),
+            };
+        }
+    }
+
+    return !tempCalendar[ 35 ] ? tempCalendar.slice(0, 35) : tempCalendar;
+};
 
 export const Calendar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [chosenDate, setChosenDate] = useState({});
+    const [currentDay, setCurrentDay] = useState(null);
+    const [calendar, setCalendar] = useState([]);
+    const [chosenDate, setChosenDate] = useState(null);
+
+    useEffect(() => {
+        setCurrentDay(moment());
+        setCalendar(createCalendar());
+    }, []);
 
     const onChangeDate = (event) => {
-        setChosenDate(event.target.value);
+        event.target.value.length > 0 && setChosenDate(null);
+    };
+
+    const onPrevMonth = () => {
+        const day = currentDay.subtract(1, 'month');
+
+        setCurrentDay(day);
+        setCalendar(createCalendar(day));
+    };
+
+    const onNextMonth = () => {
+        const day = currentDay.add(1, 'month');
+
+        setCurrentDay(day);
+        setCalendar(createCalendar(day));
     };
 
     const onSetDay = (day) => {
@@ -29,34 +79,42 @@ export const Calendar = () => {
         setIsOpen(false);
     };
 
+    console.log(calendar);
+
     return (
         <div id = { 'calendar' } className = { Styles.container }>
             <div className = { Styles.text_field }>
                 <label htmlFor = { 'calendar_field' }>{ 'Коли нагадати:' }</label>
                 <input
                     type = { 'text' } id = { 'calendar_field' }
-                    name = { 'calendar' } value = { chosenDate?.date ? `${chosenDate.date}.10.2023` : '' }
+                    name = { 'calendar' } value = { chosenDate?.fullDate || '' }
                     onChange = { onChangeDate } onClick = { () => setIsOpen(!isOpen) } />
             </div>
             <div className = { Styles.calendar } data-open = { isOpen }>
                 <div className = { Styles.calendar_month }>
-                    <span className = { Styles.month_btn }>{ '<' }</span>
-                    <span className = { Styles.month_date }>{ 'Жовтень 2023' }</span>
-                    <span className = { Styles.month_btn }>{ '>' }</span>
+                    <span className = { Styles.month_btn } onClick = { onPrevMonth }>{ '<' }</span>
+                    <span className = { Styles.month_date }>{ currentDay && `${months[ currentDay?.format('M') ]} ${currentDay?.format('YYYY')}` }</span>
+                    <span className = { Styles.month_btn } onClick = { onNextMonth }>{ '>' }</span>
                 </div>
                 <div className = { Styles.calendar_week }>
                     {
-                        week.map((d) => {
+                        weekDays.map((d) => {
                             return <span key = { d }>{ d }</span>;
                         })
                     }
                 </div>
                 <div className = { Styles.calendar_days }>
                     {
-                        calendar.map((day) => {
+                        calendar.length > 0 && calendar.map((day, index) => {
+                            if (!day) return <span key = { index } />;
+
                             return <span
-                                key = { day.id } onClick = { () => onSetDay(day) }
-                                data-chosen = { chosenDate.date === day.date }>{ day.date }</span>;
+                                key = { index }
+                                onClick = { () => onSetDay(day) }
+                                data-chosen = { chosenDate?.fullDate === day?.fullDate }
+                                data-empty = { false }>
+                                { day?.day }
+                            </span>;
                         })
                     }
                 </div>
