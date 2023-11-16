@@ -120,6 +120,11 @@
         border-radius: 50%;
         background: var(--success-btn-bgcolor);
         color: #FFFFFF;
+
+        &:hover {
+            background: var(--success-btn-bgcolor) !important;
+            color: #FFFFFF !important;
+        }
     }
 
     & span[data-empty='false'] {

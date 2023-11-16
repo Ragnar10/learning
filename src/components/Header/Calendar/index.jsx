@@ -75,8 +75,7 @@ export const Calendar = () => {
     };
 
     const onSetDay = (day) => {
-        setChosenDate(day);
-        setIsOpen(false);
+        setChosenDate(chosenDate?.fullDate === day?.fullDate ? null : day);
     };
 
     console.log(calendar);
