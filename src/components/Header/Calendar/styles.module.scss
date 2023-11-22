@@ -8,9 +8,10 @@
 }
 
 .text_field {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: fit-content;
     height: fit-content;
 
     & > label {
@@ -19,21 +20,54 @@
         line-height: 16px;
     }
 
-    & > input {
-        width: 100%;
-        height: 40px;
-        padding: 9px 12px;
-        border: 1px solid var(--primary-border-color);
-        outline: none;
-        border-radius: var(--primary-border-radius);
-        font-family: Geometria, sans-serif;
-        font-size: var(--primary-fszie);
-        line-height: 20px;
-        color: var(--primary-text-color);
-        background: var(--primary-color);
+    & > div {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        cursor: pointer;
 
-        &::placeholder {
-            color: var(--placeholder-text-color);
+        & > input {
+            width: 100%;
+            height: 40px;
+            padding: 9px 12px;
+            border: 1px solid var(--primary-border-color);
+            outline: none;
+            border-radius: var(--primary-border-radius);
+            font-family: Geometria, sans-serif;
+            font-size: var(--primary-fszie);
+            line-height: 20px;
+            color: var(--primary-text-color);
+            background: var(--primary-color);
+            cursor: inherit;
+
+            &::placeholder {
+                color: var(--placeholder-text-color);
+            }
+
+            &:focus {
+                border: 1px solid var(--success-btn-bgcolor);
+            }
+        }
+    }
+}
+
+.text_field[data-icon='true'] {
+    & > div {
+        & > input {
+            padding-right: 36px;
+        }
+
+        & > svg {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+
+            * {
+                fill: var(--icon-color);
+            }
         }
     }
 }
@@ -127,12 +161,28 @@
         }
     }
 
+    & span[data-disabled='true'] {
+        border-radius: 50%;
+        color: var(--placeholder-text-color);
+        background: var(--disable-btn-bgcolor);
+        cursor: default;
+        pointer-events: none;
+    }
+
     & span[data-empty='false'] {
         &:hover {
             border-radius: 50%;
             color: var(--secondary-text-color);
-            background: var(--disable-btn-bgcolor);
+            background: var(--primary-btn-bgcolor);
             cursor: pointer;
+        }
+    }
+
+    & span[data-current='true'] {
+        color: var(--error-text-color);
+
+        &:hover {
+            color: var(--error-text-color);
         }
     }
 }
