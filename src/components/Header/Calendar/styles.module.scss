@@ -145,24 +145,14 @@
         display: inline-block;
         width: calc(100% / 7);
         height: 40px;
-        line-height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0);
+        line-height: 38px;
         text-align: center;
         color: var(--placeholder-text-color);
     }
 
-    & span[data-chosen='true'] {
-        border-radius: 50%;
-        background: var(--success-btn-bgcolor);
-        color: #FFFFFF;
-
-        &:hover {
-            background: var(--success-btn-bgcolor) !important;
-            color: #FFFFFF !important;
-        }
-    }
-
     & span[data-disabled='true'] {
-        border-radius: 50%;
         color: var(--placeholder-text-color);
         background: var(--disable-btn-bgcolor);
         cursor: default;
@@ -171,18 +161,19 @@
 
     & span[data-empty='false'] {
         &:hover {
-            border-radius: 50%;
+            border: 1px solid var(--primary-border-color);
             color: var(--secondary-text-color);
-            background: var(--primary-btn-bgcolor);
             cursor: pointer;
         }
     }
 
-    & span[data-current='true'] {
-        color: var(--error-text-color);
+    & span[data-chosen='true'] {
+        border: 1px solid rgba(0, 0, 0, 0) !important;
+        background: var(--success-btn-bgcolor) !important;
+        color: #FFFFFF !important;
+    }
 
-        &:hover {
-            color: var(--error-text-color);
-        }
+    & span[data-current='true'] {
+        color: var(--error-text-color) !important;
     }
 }

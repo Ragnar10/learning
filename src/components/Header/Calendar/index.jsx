@@ -23,20 +23,19 @@ const months = {
     12: 'Грудень',
 };
 
-const createCalendar = (availableDays, day) => {
-    const today = moment();
-    const startDay = today.valueOf();
-    const endDay = moment().add(availableDays, 'days').valueOf();
-    const startMonthDay = moment(day).startOf('month');
-    const firstWeekDay = (startMonthDay.day() === 0 ? 7 : startMonthDay.day()) - 1;
-    const lastMonthDay = moment(day).daysInMonth();
+const createCalendar = (availableHours, day) => {
     const tempCalendar = [];
+    const startMonthDay = moment(day).startOf('month');
+    const lastMonthDay = moment(day).daysInMonth();
+    const firstWeekDay = (startMonthDay.day() === 0 ? 7 : startMonthDay.day()) - 1;
+    const startAvailableDay = moment().startOf('day').valueOf();
+    const endAvailableDay = moment().add(availableHours, 'hours').valueOf();
 
     for (let i = 0; i < 42; i++) {
         if (i < firstWeekDay || i + 1 > lastMonthDay + firstWeekDay) {
             tempCalendar[ i ] = null;
         } else {
-            const tempDay =  moment(day).date(i + 1 - firstWeekDay);
+            const dayOfMonth =  moment(day).date(i + 1 - firstWeekDay);
 
             tempCalendar[ i ] = {
                 day:     i + 1 - firstWeekDay,
@@ -44,10 +43,10 @@ const createCalendar = (availableDays, day) => {
                     ? 7 : startMonthDay.date(i + 1 - firstWeekDay).day(),
                 month:      moment(day).month() + 1,
                 year:       moment(day).year(),
-                fullDate:   tempDay.format('DD.MM.YYYY'),
-                currentDay: today.format('DD.MM.YYYY') === tempDay.format('DD.MM.YYYY'),
-                disabled:   availableDays
-                    ? tempDay.valueOf() < startDay || tempDay.valueOf() > endDay
+                fullDate:   dayOfMonth.format('DD.MM.YYYY'),
+                currentDay: moment().format('DD.MM.YYYY') === dayOfMonth.format('DD.MM.YYYY'),
+                disabled:   availableHours
+                    ? dayOfMonth.valueOf() < startAvailableDay || dayOfMonth.startOf('day').valueOf() > endAvailableDay
                     : false,
             };
         }
@@ -58,7 +57,7 @@ const createCalendar = (availableDays, day) => {
 
 export const Calendar = ({
     label = 'Дата:',
-    availableDays = 2,
+    availableHours = 48,
     icon = true,
     classField,
     classCalendar,
@@ -70,7 +69,7 @@ export const Calendar = ({
 
     useEffect(() => {
         setCurrentMonth(moment());
-        setCalendar(createCalendar(availableDays));
+        setCalendar(createCalendar(availableHours));
     }, []);
 
     const onChangeDate = (event) => {
@@ -81,14 +80,14 @@ export const Calendar = ({
         const day = currentMonth.subtract(1, 'month');
 
         setCurrentMonth(day);
-        setCalendar(createCalendar(availableDays, day));
+        setCalendar(createCalendar(availableHours, day));
     };
 
     const onNextMonth = () => {
         const day = currentMonth.add(1, 'month');
 
         setCurrentMonth(day);
-        setCalendar(createCalendar(availableDays, day));
+        setCalendar(createCalendar(availableHours, day));
     };
 
     const onSetDay = (day) => {

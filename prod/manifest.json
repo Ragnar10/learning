@@ -1,0 +1,84 @@
+{
+  "_authActions-37ee09e6.js": {
+    "file": "assets/authActions-37ee09e6.js",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "index.css": {
+    "file": "assets/index-c9b18357.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/Poppins-Regular-707fdc5c.ttf",
+      "assets/Poppins-Bold-7219547e.ttf"
+    ],
+    "css": [
+      "assets/index-c9b18357.css"
+    ],
+    "dynamicImports": [
+      "src/pages/HomePage.jsx",
+      "src/pages/AuthPages/SignUpPage.jsx",
+      "src/pages/AuthPages/SignInPage.jsx",
+      "src/pages/FilmsPage.jsx"
+    ],
+    "file": "assets/index-9873339a.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/pages/AuthPages/SignInPage.jsx": {
+    "file": "assets/SignInPage-7e28638a.js",
+    "imports": [
+      "index.html",
+      "_authActions-37ee09e6.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/AuthPages/SignInPage.jsx"
+  },
+  "src/pages/AuthPages/SignUpPage.jsx": {
+    "file": "assets/SignUpPage-c1372a28.js",
+    "imports": [
+      "index.html",
+      "_authActions-37ee09e6.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/AuthPages/SignUpPage.jsx"
+  },
+  "src/pages/FilmsPage.jsx": {
+    "file": "assets/FilmsPage-4c3ad0bb.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/FilmsPage.jsx"
+  },
+  "src/pages/HomePage.jsx": {
+    "file": "assets/HomePage-ec6dab61.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/HomePage.jsx"
+  },
+  "src/theme/assets/fonts/Poppins/Poppins-Bold.ttf": {
+    "file": "assets/Poppins-Bold-7219547e.ttf",
+    "src": "src/theme/assets/fonts/Poppins/Poppins-Bold.ttf"
+  },
+  "src/theme/assets/fonts/Poppins/Poppins-Regular.ttf": {
+    "file": "assets/Poppins-Regular-707fdc5c.ttf",
+    "src": "src/theme/assets/fonts/Poppins/Poppins-Regular.ttf"
+  },
+  "src/theme/assets/icons/close.svg": {
+    "file": "assets/close-53c9119e.svg",
+    "src": "src/theme/assets/icons/close.svg"
+  },
+  "src/theme/assets/icons/theme_dark.svg": {
+    "file": "assets/theme_dark-64532d06.svg",
+    "src": "src/theme/assets/icons/theme_dark.svg"
+  },
+  "src/theme/assets/icons/theme_light.svg": {
+    "file": "assets/theme_light-7c93a08a.svg",
+    "src": "src/theme/assets/icons/theme_light.svg"
+  }
+}
