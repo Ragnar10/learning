@@ -72,6 +72,14 @@ export const Calendar = ({
         setCalendar(createCalendar(availableHours));
     }, []);
 
+    const onOpenCalendar = () => {
+        if (isOpen) {
+            setCurrentMonth(moment());
+            setCalendar(createCalendar(availableHours, moment()));
+        }
+        setIsOpen(!isOpen);
+    };
+
     const onChangeDate = (event) => {
         event.target.value.length > 0 && setChosenDate(null);
     };
@@ -98,7 +106,7 @@ export const Calendar = ({
         <div id = { 'calendar' } className = { Styles.container }>
             <div className = { `${Styles.text_field} ${classField || ''}` } data-icon = { icon }>
                 <label htmlFor = { 'calendar_field' }>{ label }</label>
-                <div onClick = { () => setIsOpen(!isOpen) }>
+                <div onClick = { onOpenCalendar }>
                     <input
                         type = { 'text' } id = { 'calendar_field' }
                         name = { 'calendar' } value = { chosenDate?.fullDate || '' }
