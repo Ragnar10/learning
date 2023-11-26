@@ -83,7 +83,7 @@ export const Calendar = ({
     labelTime = 'Час',
     availableHours = 48,
     withTime = false,
-    icon = true,
+    icon = false,
     classContainer,
     classWrapper,
     classField,
@@ -190,30 +190,33 @@ export const Calendar = ({
                     </div>
                 </div>
             </div>
-            <div className = { `${Styles.wrapper_time} ${classWrapper || ''}` }>
-                <div className = { `${Styles.text_field} ${classField || ''}` }>
-                    <label htmlFor = { 'time_field' }>{ labelTime }</label>
-                    <div onClick = { onOpenTime }>
-                        <input
-                            type = { 'text' } id = { 'time_field' }
-                            name = { 'time_field' } value = { chosenTime?.value || '' }
-                            onChange = { onChangeTime } />
+            {
+                withTime
+                && <div className = { `${Styles.wrapper_time} ${classWrapper || ''}` }>
+                    <div className = { `${Styles.text_field} ${classField || ''}` }>
+                        <label htmlFor = { 'time_field' }>{ labelTime }</label>
+                        <div onClick = { onOpenTime }>
+                            <input
+                                type = { 'text' } id = { 'time_field' }
+                                name = { 'time_field' } value = { chosenTime?.value || '' }
+                                onChange = { onChangeTime } />
+                        </div>
+                    </div>
+                    <div className = { Styles.time_list } data-open = { isOpenTime }>
+                        {
+                            timeArray.map((item) => {
+                                return (
+                                    <span
+                                        key = { item.id }
+                                        onClick = { () => onSetTime(item) }>
+                                        { item.value }
+                                    </span>
+                                );
+                            })
+                        }
                     </div>
                 </div>
-                <div className = { Styles.time_list } data-open = { isOpenTime }>
-                    {
-                        timeArray.map((item) => {
-                            return (
-                                <span
-                                    key = { item.id }
-                                    onClick = { () => onSetTime(item) }>
-                                    { item.value }
-                                </span>
-                            );
-                        })
-                    }
-                </div>
-            </div>
+            }
         </div>
     );
 };
