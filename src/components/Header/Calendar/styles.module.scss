@@ -1,10 +1,9 @@
 .container {
-    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     width: fit-content;
     height: fit-content;
-    margin-right: 20px;
+    gap: 20px;
 }
 
 .text_field {
@@ -70,6 +69,12 @@
             }
         }
     }
+}
+
+.wrapper_calendar {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
 }
 
 .calendar[data-open='false'],
@@ -176,4 +181,51 @@
     & span[data-current='true'] {
         color: var(--error-text-color) !important;
     }
+}
+
+.wrapper_time {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    & .text_field {
+        & > div > input {
+            width: 100px;
+        }
+    }
+}
+
+.time_list {
+    position: absolute;
+    top: 66px;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    max-height: 300px;
+    border: 1px solid var(--primary-border-color);
+    border-radius: var(--primary-border-radius);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.0392157), 0 2px 8px rgba(0, 0, 0, 0.0392157), 0 4px 8px rgba(0, 0, 0, 0.0392157), 0 12px 16px rgba(0, 0, 0, 0.0392157), 0 16px 32px rgba(0, 0, 0, 0.0588235), 0 64px 64px rgba(0, 0, 0, 0.0588235);
+    background: var(--primary-color);
+    overflow: auto;
+
+    & span {
+        width: 100%;
+        height: 40px;
+        padding: 10px 12px;
+        font-size: var(--primary-fszie);
+        line-height: 20px;
+        white-space: nowrap;
+        color: var(--primary-text-color);
+        cursor: pointer;
+
+        &:hover {
+            background: var(--disable-btn-bgcolor);
+        }
+    }
+}
+
+.time_list[data-open='false'] {
+    display: none;
 }
