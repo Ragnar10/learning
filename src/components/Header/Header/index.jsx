@@ -13,6 +13,7 @@ export const Header = () => {
     const isAuth = Boolean(useSelector((state) => state.auth.user).id);
 
     const [date, setDate] = useState('--/--/--');
+    const [fullDate, setFullDate] = useState({ day: null, time: null });
 
     useEffect(() => {
         const eventSource = new EventSource(`${import.meta.env.VITE_API_PATH}/realtime`);
@@ -47,7 +48,7 @@ export const Header = () => {
                 }
             </nav>
             <div className = { Styles.header_auth }>
-                <Calendar />
+                <Calendar fullDate = { fullDate } onSetFullDate = { (fDate) => setFullDate(fDate) } />
                 <div className = { Styles.auth_date }>{ date }</div>
                 <ThemeBtn />
                 <div className = { Styles.auth_nav }>

@@ -224,6 +224,12 @@
             background: var(--disable-btn-bgcolor);
         }
     }
+
+    & span[data-disabled="true"] {
+        color: var(--placeholder-text-color);
+        cursor: default;
+        pointer-events: none;
+    }
 }
 
 .time_list[data-open='false'] {
