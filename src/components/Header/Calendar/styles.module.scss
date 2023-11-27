@@ -47,6 +47,10 @@
                 border: 1px solid var(--success-btn-bgcolor);
             }
         }
+
+        & > input[data-error='true'] {
+            border-color: var(--error-text-color);
+        }
     }
 }
 
@@ -225,7 +229,7 @@
         }
     }
 
-    & span[data-disabled="true"] {
+    & span[data-disabled='true'] {
         color: var(--placeholder-text-color);
         cursor: default;
         pointer-events: none;

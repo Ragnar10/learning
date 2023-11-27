@@ -12,20 +12,33 @@ import { ThemeBtn } from '../ThemeBtn';
 export const Header = () => {
     const isAuth = Boolean(useSelector((state) => state.auth.user).id);
 
-    const [date, setDate] = useState('--/--/--');
+    const [time, setTime] = useState('--/--/--');
     const [fullDate, setFullDate] = useState({ day: null, time: null });
+    const [errorCalendar, setErrorCalendar] = useState('');
 
     useEffect(() => {
         const eventSource = new EventSource(`${import.meta.env.VITE_API_PATH}/realtime`);
         eventSource.onmessage = (event) => {
             const d = new Date(Number(event.data));
-            setDate(d.toLocaleString());
+            setTime(d.toLocaleString());
         };
 
         return () => {
             eventSource.close();
         };
     }, []);
+
+    const onSetFullDate = (date) => {
+        date && setErrorCalendar('');
+        setFullDate(date);
+    };
+
+    const onSaveDate = () => {
+        if (!fullDate?.day?.fullDate) return setErrorCalendar('day');
+        if (!fullDate?.time?.fullTime) return setErrorCalendar('time');
+
+        console.log(fullDate);
+    };
 
     const onExit = () => {
         localStorage.removeItem('token');
@@ -48,8 +61,11 @@ export const Header = () => {
                 }
             </nav>
             <div className = { Styles.header_auth }>
-                <Calendar fullDate = { fullDate } onSetFullDate = { (fDate) => setFullDate(fDate) } />
-                <div className = { Styles.auth_date }>{ date }</div>
+                <Calendar
+                    fullDate = { fullDate } onSetFullDate = { onSetFullDate }
+                    error = { errorCalendar } />
+                <button onClick = { onSaveDate }>Save</button>
+                <div className = { Styles.auth_date }>{ time }</div>
                 <ThemeBtn />
                 <div className = { Styles.auth_nav }>
                     {

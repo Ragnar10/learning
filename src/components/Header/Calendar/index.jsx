@@ -95,6 +95,7 @@ export const Calendar = ({
     labelTime = 'Час:',
     separatorTime = ':',
     divisionStep = 5,
+    error,
     classContainer,
     classWrapper,
     classField,
@@ -110,6 +111,7 @@ export const Calendar = ({
                 formatDate = { formatDate }
                 isIcon = { isIcon }
                 withTime = { withTime }
+                error = { error === 'day' }
                 classWrapper = { classWrapper }
                 classField = { classField }
                 classCalendar = { classCalendar } />
@@ -122,6 +124,7 @@ export const Calendar = ({
                     labelTime = { labelTime }
                     divisionStep = { divisionStep }
                     separatorTime = { separatorTime }
+                    error = { error === 'time' }
                     classWrapper = { classWrapper }
                     classField = { classField } />
             }
@@ -136,6 +139,7 @@ const ChooseDateField = ({
     formatDate,
     isIcon,
     withTime,
+    error,
     classWrapper,
     classField,
     classCalendar,
@@ -193,7 +197,7 @@ const ChooseDateField = ({
                     <input
                         type = { 'text' } id = { 'date_field' }
                         name = { 'date_field' } value = { chosenDate?.fullDate || '' }
-                        onChange = { onChangeDate } />
+                        onChange = { onChangeDate } data-error = { error } />
                     { isIcon && <CalendarIcon /> }
                 </div>
             </div>
@@ -239,6 +243,7 @@ const ChooseTimeField = ({
     labelTime,
     divisionStep,
     separatorTime,
+    error,
     classWrapper,
     classField,
 }) => {
@@ -275,7 +280,7 @@ const ChooseTimeField = ({
                     <input
                         type = { 'text' } id = { 'time_field' }
                         name = { 'time_field' } value = { chosenTime?.fullTime || '' }
-                        onChange = { onChangeTime } />
+                        onChange = { onChangeTime } data-error = { error } />
                 </div>
             </div>
             <div className = { Styles.time_list } data-open = { isOpenTime }>
