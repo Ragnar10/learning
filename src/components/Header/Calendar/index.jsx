@@ -196,9 +196,13 @@ const ChooseDateField = ({
                 <label htmlFor = { 'date_field' }>{ labelCalendar }</label>
                 <div onClick = { onOpenCalendar }>
                     <input
-                        type = { 'text' } id = { 'date_field' }
-                        name = { 'date_field' } value = { chosenDate?.fullDate || '' }
-                        onChange = { onChangeDate } data-error = { error } />
+                        type = { 'text' }
+                        id = { 'date_field' }
+                        name = { 'date_field' }
+                        placeholder = { 'дд.мм.рррр' }
+                        value = { chosenDate?.fullDate || '' }
+                        onChange = { onChangeDate }
+                        data-error = { error } />
                     { isIcon && <CalendarIcon /> }
                 </div>
             </div>
@@ -279,9 +283,13 @@ const ChooseTimeField = ({
                 <label htmlFor = { 'time_field' }>{ labelTime }</label>
                 <div onClick = { onOpenTime }>
                     <input
-                        type = { 'text' } id = { 'time_field' }
-                        name = { 'time_field' } value = { chosenTime?.fullTime || '' }
-                        onChange = { onChangeTime } data-error = { error } />
+                        type = { 'text' }
+                        id = { 'time_field' }
+                        name = { 'time_field' }
+                        placeholder = { 'гг:хх' }
+                        value = { chosenTime?.fullTime || '' }
+                        onChange = { onChangeTime }
+                        data-error = { error } />
                 </div>
             </div>
             <div className = { Styles.time_list } data-open = { isOpenTime }>
