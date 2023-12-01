@@ -1,7 +1,9 @@
 // Core
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // Instruments
 import moment from 'moment';
+// Hooks
+import { useOutsideClick } from '../../../hooks';
 // Images
 import { ReactComponent as CalendarIcon } from '../../../theme/assets/icons/calendar.svg';
 // Styles
@@ -150,10 +152,16 @@ const ChooseDateField = ({
     const [currentMonth, setCurrentMonth] = useState(null);
     const [chosenDate, setChosenDate] = useState(fullDate?.day || null);
 
+    const ref = useRef(null);
+
     useEffect(() => {
         setCurrentMonth(moment());
         setCalendar(createCalendar(availableHours, moment(), formatDate));
     }, []);
+
+    useOutsideClick(ref, isOpenCalendar, () => {
+        setIsOpenCalendar(false);
+    });
 
     const onOpenCalendar = () => {
         if (isOpenCalendar) {
@@ -191,7 +199,7 @@ const ChooseDateField = ({
     };
 
     return (
-        <div className = { `${Styles.wrapper_calendar} ${classWrapper || ''}` }>
+        <div ref = { ref } className = { `${Styles.wrapper_calendar} ${classWrapper || ''}` }>
             <div className = { `${Styles.text_field} ${classField || ''}` } data-icon = { isIcon }>
                 <label htmlFor = { 'date_field' }>{ labelCalendar }</label>
                 <div onClick = { onOpenCalendar }>
@@ -256,10 +264,16 @@ const ChooseTimeField = ({
     const [timeArray, setTimeArray] = useState([]);
     const [chosenTime, setChosenTime] = useState(fullDate?.time || null);
 
+    const ref = useRef(null);
+
     useEffect(() => {
         setTimeArray(createTimeArray(divisionStep, separatorTime, fullDate, availableHours));
         setChosenTime(fullDate?.time);
     }, [fullDate?.day]);
+
+    useOutsideClick(ref, isOpenTime, () => {
+        setIsOpenTime(false);
+    });
 
 
     const onOpenTime = () => {
@@ -278,7 +292,7 @@ const ChooseTimeField = ({
     };
 
     return (
-        <div className = { `${Styles.wrapper_time} ${classWrapper || ''}` }>
+        <div ref = { ref } className = { `${Styles.wrapper_time} ${classWrapper || ''}` }>
             <div className = { `${Styles.text_field} ${classField || ''}` }>
                 <label htmlFor = { 'time_field' }>{ labelTime }</label>
                 <div onClick = { onOpenTime }>
