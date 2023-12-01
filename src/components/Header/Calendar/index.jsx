@@ -133,6 +133,7 @@ export const Calendar = ({
 };
 
 const ChooseDateField = ({
+    fullDate,
     onSetFullDate,
     labelCalendar,
     availableHours,
@@ -147,7 +148,7 @@ const ChooseDateField = ({
     const [isOpenCalendar, setIsOpenCalendar] = useState(false);
     const [calendar, setCalendar] = useState([]);
     const [currentMonth, setCurrentMonth] = useState(null);
-    const [chosenDate, setChosenDate] = useState(null);
+    const [chosenDate, setChosenDate] = useState(fullDate?.day || null);
 
     useEffect(() => {
         setCurrentMonth(moment());
@@ -249,11 +250,11 @@ const ChooseTimeField = ({
 }) => {
     const [isOpenTime, setIsOpenTime] = useState(false);
     const [timeArray, setTimeArray] = useState([]);
-    const [chosenTime, setChosenTime] = useState(null);
+    const [chosenTime, setChosenTime] = useState(fullDate?.time || null);
 
     useEffect(() => {
         setTimeArray(createTimeArray(divisionStep, separatorTime, fullDate, availableHours));
-        setChosenTime(null);
+        setChosenTime(fullDate?.time);
     }, [fullDate?.day]);
 
 
