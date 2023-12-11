@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 // Routing
 import { Link, NavLink } from 'react-router-dom';
-// Instruments
-import moment from 'moment';
 // Styles
 import Styles from './styles.module.scss';
 // Components
