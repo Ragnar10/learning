@@ -46,6 +46,7 @@ const createCalendar = (availableHours, day, formatDate) => {
                 month:      moment(day).month() + 1,
                 year:       moment(day).year(),
                 fullDate:   dayOfMonth.format(formatDate || 'DD-MM-YYYY'),
+                unixTime:   moment().set({ year: moment(day).year(), month: moment(day).month() + 1, date: i + 1 - firstWeekDay }).valueOf(),
                 currentDay: moment().format(formatDate || 'DD-MM-YYYY') === dayOfMonth.format(formatDate || 'DD-MM-YYYY'),
                 disabled:   availableHours
                     ? dayOfMonth.valueOf() < startAvailableDay || dayOfMonth.startOf('day').valueOf() > endAvailableDay
@@ -150,7 +151,6 @@ const ChooseDateField = ({
     const [isOpenCalendar, setIsOpenCalendar] = useState(false);
     const [calendar, setCalendar] = useState([]);
     const [currentMonth, setCurrentMonth] = useState(null);
-    const [chosenDate, setChosenDate] = useState(fullDate?.day || null);
 
     const ref = useRef(null);
 
@@ -160,6 +160,10 @@ const ChooseDateField = ({
     }, []);
 
     useOutsideClick(ref, isOpenCalendar, () => {
+        if (isOpenCalendar) {
+            setCurrentMonth(moment());
+            setCalendar(createCalendar(availableHours, moment(), formatDate));
+        }
         setIsOpenCalendar(false);
     });
 
@@ -172,7 +176,6 @@ const ChooseDateField = ({
     };
 
     const onChangeDate = (event) => {
-        event.target.value.length > 0 && setChosenDate(null);
         event.target.value.length > 0 && onSetFullDate(withTime ? { day: null, time: null } : { day: null });
     };
 
@@ -191,10 +194,9 @@ const ChooseDateField = ({
     };
 
     const onSetDay = (day) => {
-        setChosenDate(chosenDate?.fullDate === day?.fullDate ? null : day);
         onSetFullDate(withTime
-            ? { day: chosenDate?.fullDate === day?.fullDate ? null : day, time: null }
-            : { day: chosenDate?.fullDate === day?.fullDate ? null : day });
+            ? { day: fullDate?.day?.fullDate === day?.fullDate ? null : day, time: null }
+            : { day: fullDate?.day?.fullDate === day?.fullDate ? null : day });
         setIsOpenCalendar(false);
     };
 
@@ -208,7 +210,7 @@ const ChooseDateField = ({
                         id = { 'date_field' }
                         name = { 'date_field' }
                         placeholder = { 'дд.мм.рррр' }
-                        value = { chosenDate?.fullDate || '' }
+                        value = { fullDate?.day?.fullDate || '' }
                         onChange = { onChangeDate }
                         data-error = { error } />
                     { isIcon && <CalendarIcon /> }
@@ -236,7 +238,7 @@ const ChooseDateField = ({
                                 key = { index }
                                 onClick = { () => !day?.disabled && onSetDay(day) }
                                 data-current = { day?.currentDay }
-                                data-chosen = { chosenDate?.fullDate === day?.fullDate }
+                                data-chosen = { fullDate?.day?.fullDate === day?.fullDate }
                                 data-disabled = { day?.disabled }
                                 data-empty = { false }>
                                 { day?.day }
@@ -262,13 +264,11 @@ const ChooseTimeField = ({
 }) => {
     const [isOpenTime, setIsOpenTime] = useState(false);
     const [timeArray, setTimeArray] = useState([]);
-    const [chosenTime, setChosenTime] = useState(fullDate?.time || null);
 
     const ref = useRef(null);
 
     useEffect(() => {
         setTimeArray(createTimeArray(divisionStep, separatorTime, fullDate, availableHours));
-        setChosenTime(fullDate?.time);
     }, [fullDate?.day]);
 
     useOutsideClick(ref, isOpenTime, () => {
@@ -281,14 +281,12 @@ const ChooseTimeField = ({
     };
 
     const onChangeTime = (event) => {
-        event.target.value.length > 0 && setChosenTime(null);
         event.target.value.length > 0 && onSetFullDate({ ...fullDate, time: null });
     };
 
     const onSetTime = (time) => {
-        setChosenTime(chosenTime?.id === time?.id ? null : time);
-        onSetFullDate({ ...fullDate, time: chosenTime?.id === time?.id ? null : time });
-        chosenTime?.id !== time?.id && setIsOpenTime(false);
+        onSetFullDate({ ...fullDate, time: fullDate?.time?.id === time?.id ? null : time });
+        fullDate?.time?.id !== time?.id && setIsOpenTime(false);
     };
 
     return (
@@ -301,7 +299,7 @@ const ChooseTimeField = ({
                         id = { 'time_field' }
                         name = { 'time_field' }
                         placeholder = { 'гг:хх' }
-                        value = { chosenTime?.fullTime || '' }
+                        value = { fullDate?.time?.fullTime || '' }
                         onChange = { onChangeTime }
                         data-error = { error } />
                 </div>

@@ -70,3 +70,30 @@
     cursor: default;
     pointer-events: none;
 }
+
+.calendar_wrapper {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+
+    & .calendar {
+        margin-right: 8px;
+    }
+
+    & .button {
+        width: fit-content;
+        height: 40px;
+        padding: 5px 20px;
+        margin-top: 24px;
+        margin-left: 10px;
+        border: none;
+        outline: none;
+        border-radius: var(--primary-border-radius);
+        font-size: var(--primary-fszie);
+        line-height: 20px;
+        color: #FFFFFF;
+        background: var(--success-btn-bgcolor);
+        cursor: pointer;
+    }
+}
