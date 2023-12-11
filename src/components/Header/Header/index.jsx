@@ -20,17 +20,17 @@ export const Header = () => {
     const [endDay, setEndDay] = useState({ day: null });
     const [errorCalendar, setErrorCalendar] = useState('');
 
-    // useEffect(() => {
-    //     const eventSource = new EventSource(`${import.meta.env.VITE_API_PATH}/realtime`);
-    //     eventSource.onmessage = (event) => {
-    //         const d = new Date(Number(event.data));
-    //         setTime(d.toLocaleString());
-    //     };
-    //
-    //     return () => {
-    //         eventSource.close();
-    //     };
-    // }, []);
+    useEffect(() => {
+        const eventSource = new EventSource(`${import.meta.env.VITE_API_PATH}/realtime`);
+        eventSource.onmessage = (event) => {
+            const d = new Date(Number(event.data));
+            setTime(d.toLocaleString());
+        };
+
+        return () => {
+            eventSource.close();
+        };
+    }, []);
 
     const onSetFullDate = (date, type) => {
         if (type === 'start') {
