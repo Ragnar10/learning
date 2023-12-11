@@ -159,14 +159,6 @@ const ChooseDateField = ({
         setCalendar(createCalendar(availableHours, moment(), formatDate));
     }, []);
 
-    useOutsideClick(ref, isOpenCalendar, () => {
-        if (isOpenCalendar) {
-            setCurrentMonth(moment());
-            setCalendar(createCalendar(availableHours, moment(), formatDate));
-        }
-        setIsOpenCalendar(false);
-    });
-
     const onOpenCalendar = () => {
         if (isOpenCalendar) {
             setCurrentMonth(moment());
@@ -174,6 +166,8 @@ const ChooseDateField = ({
         }
         setIsOpenCalendar(!isOpenCalendar);
     };
+
+    useOutsideClick(ref, isOpenCalendar, onOpenCalendar);
 
     const onChangeDate = (event) => {
         event.target.value.length > 0 && onSetFullDate(withTime ? { day: null, time: null } : { day: null });
