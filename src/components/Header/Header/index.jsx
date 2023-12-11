@@ -74,7 +74,7 @@ export const Header = () => {
                     labelCalendar = { 'Начальная дата:' }
                     fullDate = { startDay }
                     onSetFullDate = { (day) => onSetFullDate(day, 'start') }
-                    availableHours = { 24 * 90 }
+                    availableHours = { 24 * 30 }
                     withTime = { false }
                     error = { errorCalendar && errorCalendar === 'start' ? 'day' : '' }
                     classContainer = { Styles.calendar } />
@@ -82,7 +82,7 @@ export const Header = () => {
                     labelCalendar = { 'Конечная дата:' }
                     fullDate = { endDay }
                     onSetFullDate = { (day) => onSetFullDate(day, 'end') }
-                    availableHours = { 24 * 90 }
+                    availableHours = { 24 * 30 }
                     withTime = { false }
                     error = { errorCalendar && errorCalendar === 'end' ? 'day' : '' }
                     classContainer = { Styles.calendar } />
