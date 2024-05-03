@@ -9,18 +9,21 @@ import { Header } from '../Header';
 import { Notification } from '../Notification';
 import { PopupContainer } from '../Popups';
 import { Loader } from '../Reusable';
+import { CustomErrorBoundary } from '../ErrorBoundary';
 
 export const Main = () => {
     return (
-        <div className = { Styles.container }>
-            <Header />
-            <main className = { Styles.main }>
-                <Suspense fallback = { <Loader /> }>
-                    <Outlet />
-                </Suspense>
-            </main>
-            <PopupContainer />
-            <Notification />
-        </div>
+        <CustomErrorBoundary>
+            <div className = { Styles.container }>
+                <Header />
+                <main className = { Styles.main }>
+                    <Suspense fallback = { <Loader /> }>
+                        <Outlet />
+                    </Suspense>
+                </main>
+                <PopupContainer />
+                <Notification />
+            </div>
+        </CustomErrorBoundary>
     );
 };
