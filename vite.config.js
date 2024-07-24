@@ -4,8 +4,15 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-    plugins: [react({ fastRefresh: false }), svgr()],
-    build:   {
+    plugins: [
+        react({ fastRefresh: false }), svgr({
+            svgrOptions: {
+                exportType: 'named', ref: true, svgo: false, titleProp: true,
+            },
+            include: '**/*.svg',
+        }),
+    ],
+    build: {
         outDir:   'build',
         manifest: true,
     },
