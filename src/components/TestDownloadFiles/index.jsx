@@ -15,16 +15,16 @@ export const TestDownloadFiles = () => {
             const res = await fetch(fileUrl);
             const blob = await res.blob();
             const zip = await JSZip.loadAsync(blob);
-            const imageUrls = [];
 
-            zip.forEach(async (relativePath, file) => {
-                if (file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
-                    const fileContent = await file.async('blob');
-                    const imageUrl = URL.createObjectURL(fileContent);
-                    imageUrls.push(imageUrl);
-                    setImages((prevImages) => [...prevImages, imageUrl]);
-                }
-            });
+            zip.forEach(
+                async (relativePath, file) => {
+                    if (file.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                        const fileContent = await file.async('blob');
+                        const imageUrl = URL.createObjectURL(fileContent);
+                        setImages((prevImages) => [...prevImages, imageUrl]);
+                    }
+                },
+            );
         } catch (error) {
             console.log(error);
         }
