@@ -12,7 +12,8 @@ export default defineConfig({
             include: '**/*.svg',
         }),
     ],
-    build: {
+    assetsInclude: '**/*.zip',
+    build:         {
         outDir:   'build',
         manifest: true,
     },

@@ -11,6 +11,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/AuthPages/SignUpPage'));
 const SignInPage = lazy(() => import('./pages/AuthPages/SignInPage'));
 const FilmsPage = lazy(() => import('./pages/FilmsPage'));
+const TestDownloadFilesPage = lazy(() => import('./pages/TestDownloadFilesPage'));
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path:    '/films',
                 element: <FilmsPage />,
+            },
+            {
+                path:    '/download-files',
+                element: <TestDownloadFilesPage />,
             },
         ],
     },

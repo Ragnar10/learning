@@ -1,5 +1,7 @@
 // Styles
 import Styles from './styles.module.scss';
+// Images
+import file from '../../theme/assets/images/photos.zip';
 
 export const Home = () => {
     return (

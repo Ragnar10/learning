@@ -60,6 +60,11 @@ export const Header = () => {
                 <span>{ 'Best3' }</span>
             </Link>
             <nav className = { Styles.header_nav }>
+                <NavLink
+                    to = { '/download-files' }
+                    className = { ({ isActive }) => isActive ? Styles.nav_active_link : Styles.nav_link }>
+                    { 'Test download files' }
+                </NavLink>
                 {
                     localStorage.getItem('token') /* && isAuth */
                     && <NavLink
